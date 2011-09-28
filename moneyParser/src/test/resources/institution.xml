@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ <INSTITUTIONS count="10">
+  <INSTITUTION manager="manager" id="I000001" name="An Institution" sortcode="">
+   <ADDRESS street="123 Main Street" telephone="123 456 7890" zip="12345" city="Any Town"/>
+   <ACCOUNTIDS>
+    <ACCOUNTID id="A000001"/>
+    <ACCOUNTID id="A000129"/>
+    <ACCOUNTID id="A000134"/>
+   </ACCOUNTIDS>
+  </INSTITUTION>
+</INSTITUTIONS>

@@ -16,18 +16,18 @@ import javax.persistence.MappedSuperclass;
 public abstract class DataBase {
 	Boolean isActive;
 
-	public Long getId() {
-		return id;
+	public Long getUId() {
+		return uid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUId(Long id) {
+		this.uid = id;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ID", unique = true, nullable = false)
-	Long id;
+	@Column(name = "UID", unique = true, nullable = false)
+	Long uid;
 
 	public DataBase() {
 	}
