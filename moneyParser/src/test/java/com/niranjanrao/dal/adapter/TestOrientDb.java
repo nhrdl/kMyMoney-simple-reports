@@ -1,3 +1,4 @@
+package com.niranjanrao.dal.adapter;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -121,7 +122,7 @@ public class TestOrientDb {
 
 			final List<ODocument> result = db
 					.query(new OSQLSynchQuery<ODocument>(
-							"select * from PAYEE where id = 'P000001'"));
+							"select * from SPLIT where account = 'A000162'"));
 			for (final ODocument obj : result) {
 				log.debug("Result:" + obj.toJSON());
 			}

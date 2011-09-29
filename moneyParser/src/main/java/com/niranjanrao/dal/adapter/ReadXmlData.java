@@ -115,7 +115,7 @@ public class ReadXmlData<T extends DataBase> {
 			final String name = attr.getNodeName();
 			final Matcher m = NUMBER_PATTERN.matcher(value);
 
-			if (name.equals("share") || name.equals("value") && m.matches()) {
+			if (name.equals("shares") || name.equals("value") && m.matches()) {
 				final String[] data = value.split("/");
 				final float numerator = Float.parseFloat(data[0]), denominator = Float
 						.parseFloat(data[1]);
