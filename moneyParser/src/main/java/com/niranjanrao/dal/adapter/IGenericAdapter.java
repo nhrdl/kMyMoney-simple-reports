@@ -1,6 +1,7 @@
 package com.niranjanrao.dal.adapter;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -24,4 +25,6 @@ public interface IGenericAdapter<DomainObject, PK extends Serializable> {
 	public Long count();
 
 	public List<DomainObject> query(DetachedCriteria ct);
+
+	public int bulkSave(Collection<DomainObject> colln);
 }

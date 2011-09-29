@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PAYEES count="128">
+	<PAYEE matchingenabled="1" matchkey="" email="" usingmatchkey="0"
+		id="P000001" matchignorecase="1" name="WF VisaCredit" reference="">
+		<ADDRESS street="" postcode="" telephone="" city="" state="" />
+	</PAYEE>
+	<PAYEE matchingenabled="1" matchkey="" email="" usingmatchkey="0"
+		id="P000002" matchignorecase="1" name="FIPORT, INC. QUICKBOOKS"
+		reference="">
+		<ADDRESS street="" postcode="" telephone="" city="" state="" />
+	</PAYEE>
+	<PAYEE matchingenabled="1" matchkey="" email="" usingmatchkey="0"
+		id="P000003" matchignorecase="1" name="MACY'S (FOR ALL" reference="">
+		<ADDRESS street="" postcode="" telephone="" city="" state="" />
+	</PAYEE>
+	<PAYEE matchingenabled="1" matchkey="" email="" usingmatchkey="0"
+		id="P000004" matchignorecase="1" name="BILL PAYMENT RETURN" reference="">
+		<ADDRESS street="" postcode="" telephone="" city="" state="" />
+	</PAYEE>
+</PAYEES>

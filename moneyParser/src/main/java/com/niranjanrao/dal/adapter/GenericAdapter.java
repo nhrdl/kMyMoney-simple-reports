@@ -2,6 +2,7 @@ package com.niranjanrao.dal.adapter;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -23,20 +24,20 @@ public abstract class GenericAdapter<T, PK extends Serializable> extends
 
 	protected Class<T> getDomainClass() {
 		if (this.domainClass == null) {
-			ParameterizedType thisType = (ParameterizedType) this.getClass()
-					.getGenericSuperclass();
+			final ParameterizedType thisType = (ParameterizedType) this
+					.getClass().getGenericSuperclass();
 			this.domainClass = (Class<T>) thisType.getActualTypeArguments()[0];
 		}
 		return this.domainClass;
 	}
 
 	@Autowired
-	public void init(SessionFactory factory) {
+	public void init(final SessionFactory factory) {
 		this.setSessionFactory(factory);
 	}
 
 	@Override
-	public List<T> query(DetachedCriteria ct) {
+	public List<T> query(final DetachedCriteria ct) {
 		return this.getHibernateTemplate().findByCriteria(ct);
 	}
 
@@ -45,49 +46,49 @@ public abstract class GenericAdapter<T, PK extends Serializable> extends
 	 */
 
 	@Override
-	public T load(PK id) {
+	public T load(final PK id) {
 
 		return this.getHibernateTemplate().load(this.domainClass, id);
 	}
 
 	@Override
-	public void update(T t) {
+	public void update(final T t) {
 		this.getHibernateTemplate().update(t);
 	}
 
 	@Override
-	public void save(T t) {
+	public void save(final T t) {
 		this.getHibernateTemplate().saveOrUpdate(t);
 	}
 
 	@Override
-	public void delete(T t) {
+	public void delete(final T t) {
 		this.getHibernateTemplate().delete(t);
 	}
 
 	@Override
 	public List<T> getList() {
-		return (this.getHibernateTemplate().find("from "
-				+ this.domainClass.getName() + " x"));
+		return this.getHibernateTemplate().find(
+				"from " + this.domainClass.getName() + " x");
 	}
 
 	@Override
-	public void deleteById(PK id) {
-		Object obj = this.load(id);
+	public void deleteById(final PK id) {
+		final Object obj = this.load(id);
 		this.getHibernateTemplate().delete(obj);
 	}
 
 	@Override
 	public Long deleteAll() {
 
-		Long val = this.getHibernateTemplate().execute(
+		final Long val = this.getHibernateTemplate().execute(
 				new HibernateCallback<Long>() {
 					@Override
-					public Long doInHibernate(Session session)
+					public Long doInHibernate(final Session session)
 							throws HibernateException {
-						String hqlDelete = "delete "
+						final String hqlDelete = "delete "
 								+ GenericAdapter.this.domainClass.getName();
-						long count = session.createQuery(hqlDelete)
+						final long count = session.createQuery(hqlDelete)
 								.executeUpdate();
 						return Long.valueOf(count);
 					}
@@ -100,10 +101,17 @@ public abstract class GenericAdapter<T, PK extends Serializable> extends
 	@Override
 	public Long count() {
 		@SuppressWarnings("rawtypes")
-		List list = this.getHibernateTemplate().find(
+		final List list = this.getHibernateTemplate().find(
 				"select count(*) from " + this.domainClass.getName() + " x");
-		Long count = (Long) list.get(0);
+		final Long count = (Long) list.get(0);
 		return count;
 	}
 
+	@Override
+	public int bulkSave(final Collection<T> colln) {
+		for (final T t : colln) {
+			save(t);
+		}
+		return colln.size();
+	}
 }
