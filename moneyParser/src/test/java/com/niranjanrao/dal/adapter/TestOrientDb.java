@@ -1,4 +1,5 @@
 package com.niranjanrao.dal.adapter;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -17,9 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import com.niranjanrao.dal.adapter.ReadXmlData;
-import com.niranjanrao.dal.adapter.TestReadXml;
-import com.niranjanrao.dal.data.Institution;
+import com.niranjanrao.orientdb.OrientDAL;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -48,7 +47,7 @@ public class TestOrientDb {
 
 	static final Logger log = LoggerFactory.getLogger(TestOrientDb.class);
 
-	@Test
+	// @Test
 	public void testOrientDBXML() throws IOException,
 			ParserConfigurationException, SAXException,
 			XPathExpressionException {
@@ -64,8 +63,7 @@ public class TestOrientDb {
 		assertNotNull("Could not read the stream", input);
 		try {
 
-			final ReadXmlData<Institution> rdr = new ReadXmlData<Institution>(
-					null);
+			final OrientDAL rdr = new OrientDAL();
 			rdr.loadOrientDB(db, input);
 
 			db.browseClass("INSTITUTION").setFetchPlan("*:-1 __CHILDREN:-1");
@@ -116,13 +114,12 @@ public class TestOrientDb {
 				"/media/truecrypt/niranjan.kmy.xml");
 		try {
 
-			final ReadXmlData<Institution> rdr = new ReadXmlData<Institution>(
-					null);
+			final OrientDAL rdr = new OrientDAL();
 			rdr.loadOrientDB(db, input);
 
 			final List<ODocument> result = db
 					.query(new OSQLSynchQuery<ODocument>(
-							"select * from SPLIT where account = 'A000162'"));
+							"select * from SPLIT where __payee.name = 'BHARAT BAZAR 6500000FREMONT'"));
 			for (final ODocument obj : result) {
 				log.debug("Result:" + obj.toJSON());
 			}
