@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -98,14 +100,29 @@ public class ReadXmlData<T extends DataBase> {
 		parentDoc.field("__CHILDREN", list);
 	}
 
+	final Pattern NUMBER_PATTERN = Pattern.compile("^\\p{Digit}+/\\p{Digit}+");
+
 	private void addAttributes(final ODocument doc, final NamedNodeMap attrMap) {
 		Node attr;
+		Object toWrite;
 		for (int i = 0, max = attrMap.getLength(); i < max; i++) {
 			attr = attrMap.item(i);
 			final String value = attr.getTextContent();
-			if (value.trim().isEmpty() == false) {
-				doc.field(attr.getNodeName(), value);
+			if (value.trim().isEmpty()) {
+				continue;
 			}
+			toWrite = value;
+			final String name = attr.getNodeName();
+			final Matcher m = NUMBER_PATTERN.matcher(value);
+
+			if (name.equals("share") || name.equals("value") && m.matches()) {
+				final String[] data = value.split("/");
+				final float numerator = Float.parseFloat(data[0]), denominator = Float
+						.parseFloat(data[1]);
+				final float units = numerator / denominator;
+				toWrite = units;
+			}
+			doc.field(attr.getNodeName(), toWrite);
 		}
 	}
 

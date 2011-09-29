@@ -1,8 +1,12 @@
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
@@ -17,6 +21,7 @@ import com.niranjanrao.dal.adapter.TestReadXml;
 import com.niranjanrao.dal.data.Institution;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 
 public class TestOrientDb {
 
@@ -84,6 +89,18 @@ public class TestOrientDb {
 	}
 
 	@Test
+	public void testRegex() {
+		final Pattern NUMBER_PATTERN = Pattern
+				.compile("^\\p{Digit}+/\\p{Digit}+");
+		final String[] toMatch = { "000000000  0512799453", "608731/100" };
+
+		log.debug("Matching {} entries", toMatch.length);
+
+		final Matcher m = NUMBER_PATTERN.matcher("608731/100");
+		assertTrue("Oops should have matched", m.matches());
+	}
+
+	@Test
 	public void testOrientDBActualFile() throws IOException,
 			ParserConfigurationException, SAXException,
 			XPathExpressionException {
@@ -101,9 +118,12 @@ public class TestOrientDb {
 			final ReadXmlData<Institution> rdr = new ReadXmlData<Institution>(
 					null);
 			rdr.loadOrientDB(db, input);
-			for (final ODocument doc : db.browseClass("PAYEE")) {
-				log.debug(doc
-						.toJSON("rid,version,class,type,attribSameRow,fetchPlan:*:-1"));
+
+			final List<ODocument> result = db
+					.query(new OSQLSynchQuery<ODocument>(
+							"select * from PAYEE where id = 'P000001'"));
+			for (final ODocument obj : result) {
+				log.debug("Result:" + obj.toJSON());
 			}
 		} finally {
 			input.close();
