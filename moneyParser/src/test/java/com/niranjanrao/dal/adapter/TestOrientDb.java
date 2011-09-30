@@ -99,12 +99,67 @@ public class TestOrientDb {
 		assertTrue("Oops should have matched", m.matches());
 	}
 
+	void logResultsForQuery(final ODatabaseDocumentTx db, final String query) {
+		final List<ODocument> result = db.query(new OSQLSynchQuery<ODocument>(
+				query));
+		log.debug("Got {} results for {}", result.size(), query);
+
+		for (final ODocument obj : result) {
+			log.debug("Result:"
+					+ obj.toJSON("rid,version,class,type,attribSameRow,fetchPlan:*:-1"));
+		}
+	}
+
+	// @Test
+	public void testComplexQuery() {
+		final String url = "local:/tmp/moneyScript";
+		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(url);
+
+		try {
+			db.open("admin", "admin");
+			final String query = "select sum(value) from SPLIT where account = 'A000132' and ___transaction.postdate > '2011-07-15'"; // from
+			// TRANSACTION
+			// where
+			// TRANSACTION.SPLIT.account
+			// =
+			// 'A000132'";
+			logResultsForQuery(db, query);
+
+		} finally {
+			db.commit();
+			db.close();
+			// db.delete();
+		}
+	}
+
 	@Test
+	public void testBuildAccountData() {
+		final String url = "local:/tmp/moneyScript";
+		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(url);
+
+		try {
+			db.open("admin", "admin");
+			final OrientDAL dal = new OrientDAL();
+			final ODocument doc = dal.buildAccountData(db, "AStd::Expense");
+			assertNotNull("Oops could not get document", doc);
+			log.debug("AStd::Expense:"
+					+ doc.toJSON("rid,version,class,type,attribSameRow,fetchPlan:*:-1"));
+		} finally {
+			db.commit();
+			db.close();
+			// db.delete();
+		}
+	}
+
+	// @Test
 	public void testOrientDBActualFile() throws IOException,
 			ParserConfigurationException, SAXException,
 			XPathExpressionException {
-		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(
-				"memory:moneyScript");
+		// final ODatabaseDocumentTx db = new ODatabaseDocumentTx(
+		// "memory:moneyScript");
+
+		final String url = "local:/tmp/moneyScript";
+		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(url);
 
 		db.create();
 		// db.open("admin", "admin");
@@ -116,17 +171,21 @@ public class TestOrientDb {
 
 			final OrientDAL rdr = new OrientDAL();
 			rdr.loadOrientDB(db, input);
+			// logResultsForQuery(db,
+			// "select * from SPLIT where __payee.name = 'BHARAT BAZAR 6500000FREMONT'");
 
-			final List<ODocument> result = db
-					.query(new OSQLSynchQuery<ODocument>(
-							"select * from SPLIT where __payee.name = 'BHARAT BAZAR 6500000FREMONT'"));
-			for (final ODocument obj : result) {
-				log.debug("Result:" + obj.toJSON());
-			}
+			/*
+			 * logResultsForQuery(db,
+			 * "select * from ACCOUNT where id = 'AStd::Expense'");
+			 */
+			logResultsForQuery(db,
+					"select * from TRANSACTION where postdate < '2007-10-01'");
+
 		} finally {
 			input.close();
+			db.commit();
 			db.close();
-			db.delete();
+			// db.delete();
 		}
 	}
 }
