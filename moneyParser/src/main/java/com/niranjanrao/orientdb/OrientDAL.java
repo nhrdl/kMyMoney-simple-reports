@@ -234,19 +234,28 @@ public class OrientDAL {
 		String acctName;
 		final ODocument retDoc = new ODocument();
 
+		ArrayList<ODocument> acctList;
 		final HashMap<String, Date> rangeMap = getRangeMap();
 		for (final Entry<String, Date> entry : rangeMap.entrySet()) {
-			final ODocument doc = new ODocument();
+			acctList = new ArrayList<ODocument>();
 
 			for (final ODocument subAcct : subAccounts) {
+				final ODocument doc = new ODocument();
 				acctName = subAcct.field("name");
 				// retDoc.field(acctName, subAcct.field("id"));
 
 				final float total = buildSumForAccount(subAcct, db,
 						entry.getValue());
-				doc.field(acctName, total);
+				if (total == 0) {
+					continue;
+				}
+
+				// doc.field(acctName, total);
+				doc.field("label", acctName + "(" + total + ")");
+				doc.field("data", total);
+				acctList.add(doc);
 			}
-			retDoc.field(entry.getKey(), doc);
+			retDoc.field(entry.getKey(), acctList);
 
 		}
 

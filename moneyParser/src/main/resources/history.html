@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script language="javascript" type="text/javascript"
+	src="./flot/jquery.js"></script>
+<script language="javascript" type="text/javascript"
+	src="./flot/jquery.flot.js"></script>
+
+<script language="javascript" type="text/javascript"
+	src="./flot/jquery.flot.pie.js"></script>
+<script type="text/javascript">
+	var myData = {
+		"@type" : "d",
+		"@version" : 0,
+		"Overall" : [ {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "<a href='#'>Bills & monthly payments</a>",
+			"data" : 4130.84
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bank Charges",
+			"data" : 33.39
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Cash Withdrawal",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Child Care/Sitters",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Clothing",
+			"data" : 222.73
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Education",
+			"data" : 4.74
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Food",
+			"data" : 1288.51
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Maintainance",
+			"data" : 718.67004
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Furnishing",
+			"data" : 2790.87
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Gifts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Healthcare",
+			"data" : 1072.21
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Personal Care",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Vacation & Holiday",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Insurance",
+			"data" : 4123.7505
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Job Expense",
+			"data" : 69.9
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Recreation & Leisure",
+			"data" : 184.67
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Legal Fees",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Other Misc. Expenses",
+			"data" : 749.88
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Pet Care",
+			"data" : 471.21997
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Retirement Accounts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Taxes",
+			"data" : 5950.97
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Transportation",
+			"data" : 1248.99
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Household",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Charity",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Accountant & Tax Preparation",
+			"data" : 0.0
+		} ],
+		"Year" : [ {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bills & monthly payments",
+			"data" : 4130.84
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bank Charges",
+			"data" : 33.39
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Cash Withdrawal",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Child Care/Sitters",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Clothing",
+			"data" : 222.73
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Education",
+			"data" : 4.74
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Food",
+			"data" : 1288.51
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Maintainance",
+			"data" : 718.67004
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Furnishing",
+			"data" : 2790.87
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Gifts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Healthcare",
+			"data" : 1072.21
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Personal Care",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Vacation & Holiday",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Insurance",
+			"data" : 4123.7505
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Job Expense",
+			"data" : 69.9
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Recreation & Leisure",
+			"data" : 184.67
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Legal Fees",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Other Misc. Expenses",
+			"data" : 749.88
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Pet Care",
+			"data" : 471.21997
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Retirement Accounts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Taxes",
+			"data" : 5950.97
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Transportation",
+			"data" : 1248.99
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Household",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Charity",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Accountant & Tax Preparation",
+			"data" : 0.0
+		} ],
+		"Week" : [ {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bills & monthly payments",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bank Charges",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Cash Withdrawal",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Child Care/Sitters",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Clothing",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Education",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Food",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Maintainance",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Furnishing",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Gifts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Healthcare",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Personal Care",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Vacation & Holiday",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Insurance",
+			"data" : 1115.42
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Job Expense",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Recreation & Leisure",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Legal Fees",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Other Misc. Expenses",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Pet Care",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Retirement Accounts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Taxes",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Transportation",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Household",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Charity",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Accountant & Tax Preparation",
+			"data" : 0.0
+		} ],
+		"Month" : [ {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bills & monthly payments",
+			"data" : 423.65002
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Bank Charges",
+			"data" : 33.39
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Cash Withdrawal",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Child Care/Sitters",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Clothing",
+			"data" : 81.22
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Education",
+			"data" : 4.74
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Food",
+			"data" : 452.62
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Maintainance",
+			"data" : 408.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Home Furnishing",
+			"data" : 2519.29
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Gifts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Healthcare",
+			"data" : 343.37
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Personal Care",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Vacation & Holiday",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Insurance",
+			"data" : 1235.42
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Job Expense",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Recreation & Leisure",
+			"data" : 39.55
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Legal Fees",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Other Misc. Expenses",
+			"data" : 739.88
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Pet Care",
+			"data" : 251.68
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Retirement Accounts",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Taxes",
+			"data" : 3566.75
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Transportation",
+			"data" : 485.83997
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Household",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Charity",
+			"data" : 0.0
+		}, {
+			"@type" : "d",
+			"@version" : 0,
+			"label" : "Accountant & Tax Preparation",
+			"data" : 0.0
+		} ]
+	}
+
+	$(document).ready(function() {
+		//	alert("Here" + myData.Week);
+		draw('#week', myData.Week);
+		draw('#month', myData.Month);
+		draw('#year', myData.Year);
+		draw('#overall', myData.Overall);
+	});
+
+	function draw(id, data) {
+		$.plot($(id), data, {
+			series : {
+				pie : {
+					show : true,
+					radius : 0.5
+				}
+			}
+		});
+	}
+</script>
+<style type="text/css">
+.graph {
+	width: 450px;
+	height: 300px;
+}
+
+.tableDisplay {
+	width: 25%;
+}
+</style>
+</head>
+<body style="width: 100%;">
+	<table style="width: 100%;">
+		<tr style="width: 100%;">
+			<th class="tableDisplay">Week</th>
+			<th class="tableDisplay">Month</th>
+			<th class="tableDisplay">Year</th>
+			<th class="tableDisplay">Overall</th>
+		</tr>
+		<tr style="width: 100%;">
+			<td class='graph'><div id='week' class='graph'></div>
+			</td>
+			<td class='graph'><div id='month' class='graph'></div>
+			</td>
+			<td class='graph'><div id='year' class='graph'></div>
+			</td>
+			<td class='graph'><div id='overall' class='graph'></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

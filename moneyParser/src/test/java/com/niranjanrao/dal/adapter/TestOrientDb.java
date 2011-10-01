@@ -58,7 +58,7 @@ public class TestOrientDb {
 		// db.open("admin", "admin");
 		final String CLUSTER_NAME = "test";
 		db.addPhysicalCluster(CLUSTER_NAME);
-		final InputStream input = TestReadXml.class
+		final InputStream input = TestOrientDb.class
 				.getResourceAsStream("/institution.xml");
 		assertNotNull("Could not read the stream", input);
 		try {
@@ -166,7 +166,7 @@ public class TestOrientDb {
 		final String CLUSTER_NAME = "test";
 		db.addPhysicalCluster(CLUSTER_NAME);
 		final FileInputStream input = new FileInputStream(
-				"/media/truecrypt/niranjan.kmy.xml");
+				"/tmp/niranjan.kmy.xml");
 		try {
 
 			final OrientDAL rdr = new OrientDAL();
