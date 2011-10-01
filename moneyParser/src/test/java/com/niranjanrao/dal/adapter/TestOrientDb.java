@@ -132,7 +132,7 @@ public class TestOrientDb {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testBuildAccountData() {
 		final String url = "local:/tmp/moneyScript";
 		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(url);
