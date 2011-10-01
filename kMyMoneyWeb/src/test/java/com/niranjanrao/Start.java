@@ -2,10 +2,15 @@ package com.niranjanrao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.zip.GZIPInputStream;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Options;
 import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.http.ssl.SslContextFactory;
 import org.eclipse.jetty.server.Server;
@@ -22,7 +27,26 @@ public class Start {
 	public static void main(final String[] args) throws Exception {
 		final int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
 
-		createDB();
+		final CommandLineParser parser = new BasicParser();
+		final Options options = new Options();
+		options.addOption("h", "help", false, "Print this usage information");
+		options.addOption("p", "port", false, "Server port");
+		options.addOption("f", "file", true, "File to save program output to");
+		// Parse the program arguments
+		final CommandLine commandLine = parser.parse(options, args);
+		String file = "/home/niranjan/.kmymoney/niranjan.kmy";
+
+		if (commandLine.hasOption('h')) {
+			System.out.println("Help Message");
+			System.exit(0);
+		}
+		if (commandLine.hasOption('v')) {
+		}
+		if (commandLine.hasOption('f')) {
+			file = commandLine.getOptionValue('f');
+		}
+
+		createDB(file);
 
 		final Server server = new Server();
 		final SocketConnector connector = new SocketConnector();
@@ -90,8 +114,9 @@ public class Start {
 		}
 	}
 
-	private static void createDB() throws XPathExpressionException,
-			ParserConfigurationException, SAXException, IOException {
+	private static void createDB(final String inputSrc)
+			throws XPathExpressionException, ParserConfigurationException,
+			SAXException, IOException {
 		// TODO Auto-generated method stub
 		final String url = "memory:/tmp/moneyScript";
 		final ODatabaseDocumentTx db = new ODatabaseDocumentTx(url);
@@ -100,8 +125,8 @@ public class Start {
 		// db.open("admin", "admin");
 		final String CLUSTER_NAME = "test";
 		db.addPhysicalCluster(CLUSTER_NAME);
-		final FileInputStream input = new FileInputStream(
-				"/tmp/niranjan.kmy.xml");
+		final GZIPInputStream input = new GZIPInputStream(new FileInputStream(
+				inputSrc));
 		try {
 
 			final OrientDAL rdr = new OrientDAL();

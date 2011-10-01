@@ -251,8 +251,12 @@ public class OrientDAL {
 				}
 
 				// doc.field(acctName, total);
-				doc.field("label", acctName + "(" + total + ")");
+				doc.field(
+						"label",
+						formatLabel(acctName + "(" + total + ")",
+								(String) subAcct.field("id")));
 				doc.field("data", total);
+				doc.field("acct", subAcct.field("id"));
 				acctList.add(doc);
 			}
 			retDoc.field(entry.getKey(), acctList);
@@ -261,6 +265,11 @@ public class OrientDAL {
 
 		// retDoc.field("accountData", doc);
 		return retDoc;
+	}
+
+	private String formatLabel(final String label, final String acctId) {
+		return "<a href='#' onclick='javascript:showaccount(\"" + acctId
+				+ "\");'>" + label + "</a>";
 	}
 
 	private HashMap<String, Date> getRangeMap() {

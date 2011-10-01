@@ -27,7 +27,7 @@ public class WicketApplication extends WebApplication {
 	@Override
 	public void init() {
 		super.init();
-
+		this.mountPage("/history", History.class);
 		// add your configuration here
 	}
 }

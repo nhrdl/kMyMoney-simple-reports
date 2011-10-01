@@ -14,6 +14,12 @@ public class History extends WebPage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private final String accountID;
+
+	public History() {
+		this.accountID = getRequest().getQueryParameters()
+				.getParameterValue("id").toString("AStd::Expense");
+	}
 
 	@Override
 	public void renderHead(final IHeaderResponse response) {
@@ -33,16 +39,16 @@ public class History extends WebPage {
 				History.class, "js/flot/jquery.flot.pie.js"));
 		response.renderJavaScriptReference(new PackageResourceReference(
 				History.class, "js/initHistory.js"));
-		response.renderJavaScript(getHistory(), "history");
+		response.renderJavaScript(getHistory(accountID), "history");
 		super.renderHead(response);
 	}
 
-	private CharSequence getHistory() {
+	private CharSequence getHistory(final String id) {
 		final ODatabaseDocumentTx db = WicketApplication.db;
 
 		try {
 			final OrientDAL dal = new OrientDAL();
-			final ODocument doc = dal.buildAccountData(db, "AStd::Expense");
+			final ODocument doc = dal.buildAccountData(db, id);
 			return "var myData = " + doc.toJSON("fetchPlan:*:-1") + ";";
 		} finally {
 			db.commit();
